@@ -1,6 +1,7 @@
 ﻿using Grammar;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace Lab3
 {
@@ -25,7 +26,18 @@ namespace Lab3
 					Console.Write(nt.Name + " ");
 				}
 				Console.WriteLine();
-			}
+
+        foreach (var nt in gr.FirstSet)
+        {
+					Console.Write(nt.Key.Name + "->");
+          foreach(var nt2 in nt.Value.Where(x => x.GetType() == typeof(Terminal)))
+					{
+            Console.Write(nt2.Name + ", ");
+          }
+					Console.WriteLine();
+        }
+        Console.WriteLine();
+      }
 			catch (GrammarException e)
 			{
 				Console.WriteLine($"{e.LineNumber}: Error -  {e.Message}");
