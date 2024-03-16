@@ -21,12 +21,14 @@ namespace Lab3
 				GrammarOps gr = new GrammarOps(grammar);
 
 				// First step, computes nonterminals that can be rewritten as empty word
+				Console.WriteLine("EmptyNonterminals");
 				foreach (Nonterminal nt in gr.EmptyNonterminals)
 				{
 					Console.Write(nt.Name + " ");
 				}
 				Console.WriteLine();
 
+				Console.WriteLine("FirstSet");
         foreach (var nt in gr.FirstSet)
         {
 					Console.Write(nt.Key.Name + "->");
@@ -35,6 +37,28 @@ namespace Lab3
             Console.Write(nt2.Name + ", ");
           }
 					Console.WriteLine();
+        }
+        Console.WriteLine();
+
+				Console.WriteLine("FirstSetRules");
+				foreach (var kv in gr.FirstSetRules) 
+				{
+					Console.WriteLine(kv.Key);
+					foreach (var v in kv.Value)
+						Console.Write(v.Name + ", ");
+					Console.WriteLine();
+				}
+				Console.WriteLine();
+
+        Console.WriteLine("FollowSet");
+        foreach (var nt in gr.FollowSet)
+        {
+          Console.Write(nt.Key.Name + "->");
+          foreach (var nt2 in nt.Value.Where(x => x.GetType() == typeof(Terminal)))
+          {
+            Console.Write(nt2.Name + ", ");
+          }
+          Console.WriteLine();
         }
         Console.WriteLine();
       }

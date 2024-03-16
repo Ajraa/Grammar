@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 
 namespace Grammar
 {
@@ -14,5 +15,18 @@ namespace Grammar
 		public Nonterminal LHS { get; init; }
 
 		public IList<Symbol> RHS { get; } = new List<Symbol>();
-	}
+
+		public override string ToString()
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.Append(LHS.Name);
+			sb.Append(" -> ");
+			foreach (Symbol sym in RHS)
+			{
+				sb.Append(sym.Name);
+				sb.Append(", ");
+			}
+      return sb.ToString();
+    }
+  }
 }
